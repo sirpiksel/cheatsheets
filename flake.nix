@@ -16,7 +16,7 @@
           };
         tex = pkgs.texlive.combine {
           inherit (pkgs.texlive) scheme-basic
-            environ etoolbox geometry listings listingsutf8 pdfcol pgf tcolorbox tikzfill tools;
+            adjustbox environ etoolbox fontspec geometry listings listingsutf8 noto pdfcol pgf tcolorbox tikzfill tools;
         };
 
       in
@@ -35,7 +35,7 @@
             {
               name = "make";
               command = ''
-                pdflatex -output-directory . -interaction nonstopmode -halt-on-error -file-line-error -jobname $(basename $(pwd)) output.tex
+                lualatex -output-directory=. -interaction=nonstopmode -halt-on-error -jobname=$(basename $(pwd)) output.tex
                 rm -f *.aux *.log *.out
               '';
               help = "compile pdf";
