@@ -16,7 +16,7 @@
           };
         tex = pkgs.texlive.combine {
           inherit (pkgs.texlive) scheme-basic
-            adjustbox environ etoolbox fontspec geometry listings listingsutf8 minted noto pdfcol pgf tcolorbox tikzfill tools fancyvrb upquote;
+            adjustbox environ etoolbox fancyvrb fontspec geometry hyphenat listings listingsutf8 minted noto pdfcol pgf sourcecodepro tcolorbox tikzfill tools upquote;
         };
         pygments = pkgs.python312Packages.pygments;
 

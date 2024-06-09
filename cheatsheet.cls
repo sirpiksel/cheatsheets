@@ -17,26 +17,26 @@
 \fi
 
 % font setup
-\renewcommand{\normalsize}{\fontsize{12}{14}\selectfont}
-\newcommand{\tiny}{\fontsize{6}{7}\selectfont}
-\newcommand{\small}{\fontsize{9}{11}\selectfont}
-\newcommand{\large}{\fontsize{14}{16}\selectfont}
-\newcommand{\Large}{\fontsize{18}{20}\selectfont}
-\newcommand{\LARGE}{\fontsize{22}{24}\selectfont}
-\newcommand{\huge}{\fontsize{28}{30}\selectfont}
-\newcommand{\Huge}{\fontsize{36}{38}\selectfont}
+\newcommand{\tiny}{\fontsize{4}{5}\selectfont}
+\newcommand{\small}{\fontsize{6}{7}\selectfont}
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont}
+\newcommand{\large}{\fontsize{12}{14}\selectfont}
+\newcommand{\Large}{\fontsize{14}{16}\selectfont}
+\newcommand{\LARGE}{\fontsize{18}{20}\selectfont}
+\newcommand{\huge}{\fontsize{22}{24}\selectfont}
+\newcommand{\Huge}{\fontsize{28}{30}\selectfont}
 
 \RequirePackage{fontspec}
 \setmainfont{Noto Serif}
 \setsansfont{Noto Sans}
-\setmonofont{Noto Sans Mono}
+\setmonofont{sourcecodepro}
 
 % create maketitle
 \RequirePackage{adjustbox}
 
 \newcommand{\maketitle}[1]{
   \begin{adjustbox}{margin=0 0 0 1.2cm, center, valign=B}
-    \textbf{\textsf{\LARGE\selectfont#1}}
+    \textbf{\textsf{\huge\selectfont#1}}
   \end{adjustbox}
 }
 
@@ -56,25 +56,31 @@
   title={\textsf{#1}},
   fonttitle=\randomcolor\color{randomcol},
   detach title,
-  before upper ={\tcbtitle\\},
+  before upper ={\begin{center}\tcbtitle\end{center}},
   colframe=black,
   colback=white,
-  halign=center,
+  halign=left,
+  segmentation style=solid,
   boxrule=0.5mm,
-  arc=0mm,
-  left=2mm,
-  right=2mm,
-  top=2mm,
-  bottom=2mm,
+  arc=0.1mm,
+  outer arc=0.2mm,
+  left=0mm,
+  right=0mm,
   boxsep=1mm,
   enhanced
 }
 
 % define multicolumn layout
 \RequirePackage{multicol}
-\setlength{\columnsep}{1cm}
+\setlength{\columnsep}{3mm}
 
 % allow for code snippets
 \RequirePackage{minted}
 \definecolor{gray75}{gray}{0.75}
 \newmintinline[key]{text}{bgcolor=gray75}
+
+% disable hyphenation
+\RequirePackage[none]{hyphenat}
+
+% set layout spacing
+\linespread{1.5}
