@@ -16,15 +16,16 @@
           };
         tex = pkgs.texlive.combine {
           inherit (pkgs.texlive) scheme-basic
-            adjustbox environ etoolbox fontspec geometry listings listingsutf8 noto pdfcol pgf tcolorbox tikzfill tools;
+            adjustbox environ etoolbox fontspec geometry listings listingsutf8 minted noto pdfcol pgf tcolorbox tikzfill tools fancyvrb upquote;
         };
+        pygments = pkgs.python312Packages.pygments;
 
       in
       {
         devShells.default = (pkgs.devshell.mkShell {
           imports = [ "${devshell}/extra/git/hooks.nix" ];
           name = "tex-shell";
-          packages = with pkgs; [ tex nixpkgs-fmt ];
+          packages = with pkgs; [ tex pygments nixpkgs-fmt ];
           git.hooks = {
             enable = true;
             pre-commit.text = ''
@@ -35,22 +36,22 @@
             {
               name = "make";
               command = ''
-                lualatex -output-directory=. -interaction=nonstopmode -halt-on-error -jobname=$(basename $(pwd)) output.tex
-                rm -f *.aux *.log *.out
+                lualatex -output-directory=. -interaction=nonstopmode -halt-on-error -jobname=$(basename $(pwd)) -shell-escape output.tex
+                rm -rf *.aux *.log *.out _minted-vim
               '';
               help = "compile pdf";
             }
             {
               name = "clean";
               command = ''
-                rm -f *.aux *.log *.out
+                rm -rf *.aux *.log *.out _minted-vim
               '';
               help = "remove temporary files";
             }
             {
               name = "prune";
               command = ''
-                rm -f *.pdf *.aux *.log *.out
+                rm -rf *.pdf *.aux *.log *.out _minted-vim
               '';
               help = "remove all output files";
             }

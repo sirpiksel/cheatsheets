@@ -73,3 +73,8 @@
 % define multicolumn layout
 \RequirePackage{multicol}
 \setlength{\columnsep}{1cm}
+
+% allow for code snippets
+\RequirePackage{minted}
+\definecolor{gray75}{gray}{0.75}
+\newmintinline[key]{text}{bgcolor=gray75}
